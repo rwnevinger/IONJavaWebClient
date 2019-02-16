@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <!-- reverse.domain.package -->
+  <groupId>com.infor</groupId>
+
+  <!-- deliverable name -->
+  <artifactId>SampleAppOAuth2</artifactId>
+
+  <!-- project artifact type -->
+  <!-- When no packaging is declared, Maven assumes default: jar -->
+  <!-- Tomcat Web applications are packed into WAR files -->
+  <packaging>war</packaging>
+
+
+  <!-- project address structure root/groupId/artifactId/version -->
+  <!--version>0.0.1-SNAPSHOT</version-->
+  <version>1.0</version>
+
+  <name>SampleAppOAuth2 Maven Webapp</name>
+  <url>http://my.bennboo.com:8080/SampleAppOAuth2</url>
+
+  <properties>
+      <!-- I am using tomcate -->
+      <!--jettyVersion>9.3.9.v20160517</jettyVersion-->
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <failOnMissingWebXml>false</failOnMissingWebXml>
+  </properties>  
+
+
+  <dependencies>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+      <type>jar</type>
+    </dependency>
+
+    <!-- current version is 1.0.2 -->
+    <dependency>
+	    <groupId>org.apache.oltu.oauth2</groupId>
+	    <artifactId>org.apache.oltu.oauth2.client</artifactId>
+	    <version>1.0.0</version>
+    </dependency>
+
+    <!-- current version is 1.0.2 -->
+    <dependency>
+      <groupId>org.apache.oltu.oauth2</groupId>
+      <artifactId>org.apache.oltu.oauth2.common</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
+    <dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.0.1</version>
+	    <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+
+
+        <!-- command mvn compile  -->
+        <!-- individual class files will be found in outputDirectory when compiled with mvn compile -->
+        <!-- all class files will be bundled with WAR using mvn package or mvn compile war:war -->
+        <!-- issue mvn package  -->
+        <sourceDirectory>${basedir}/src/main/java/com/infor/ionapi/sample/client/</sourceDirectory>
+        <!--outputDirectory>${basedir}/target/classes</outputDirectory-->
+        <outputDirectory>${basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
+
+        <!-- scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory -->
+        <!-- testSourceDirectory>${basedir}/src/test/java</testSourceDirectory -->
+        <!-- testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory -->
+
+        <!-- sourceDirectory>src/main/java/com/bauenecp</sourceDirectory -->
+        <!-- declare WAR filename -->
+        <finalName>SampleAppOAuth2</finalName>
+
+
+       <plugins>
+                <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.3</version>
+                        <!-- overrides outputDirectory WAR should genereate here -->
+                        <!-- commands:  mvn package or mvn compile war:war -->
+                        <!-- the following components will be bundled with war -->
+                        <configuration>
+                          <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                        </configuration>
+                </plugin>
+                <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.1</version>
+                        <configuration>
+                          <!-- these options produce maven compile error -->
+                          <!--source>1.8</source -->
+                          <!--target>1.8</target -->
+                        </configuration>
+                </plugin>
+        </plugins>
+
+  </build>
+
+
+</project>
